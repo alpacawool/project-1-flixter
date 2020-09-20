@@ -5,6 +5,17 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Action Bar -->
+        <item name="titleTextColor">@color/colorActionBar</item>
+        <item name="subtitleTextColor">@color/colorActionBar</item>
+
+        <!-- Navigation Bar-->
+        <item name="android:navigationBarColor">@color/colorNavigationBar</item>
     </style>
+
+
+
+
 
 </resources>
