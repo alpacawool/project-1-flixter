@@ -2,6 +2,8 @@ package com.patriciabooth.flixster.adapters;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.patriciabooth.flixster.R;
 import com.patriciabooth.flixster.models.Movie;
 
@@ -81,7 +84,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 imageUrl = movie.getPosterPath();
             }
 
-            Glide.with(context).load(imageUrl).into(ivPoster);
+            //.placeholder adds image of popcorn as placeholder
+            // https://guides.codepath.org/android/Displaying-Images-with-the-Glide-Library#advanced-usage
+            Glide
+                    .with(context)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.placeholder)
+                    .into(ivPoster);
         }
     }
 }
