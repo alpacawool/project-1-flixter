@@ -3,15 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/movieborder"
+    android:paddingStart="10dp"
+    android:paddingTop="0dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="0dp">
 
     <ImageView
         android:id="@+id/ivPoster"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
+        android:layout_alignParentTop="false"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="false"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="0dp"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -20,10 +29,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="14dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:textColor="@color/colorTitleText"
         android:textSize="24sp"
+        android:textStyle="bold"
         tools:text="Fast  Furious Presents: Hobbs  Shaw" />
 
     <TextView
@@ -31,8 +42,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:paddingBottom="10dp"
+        android:textColor="@color/colorDescText"
         tools:text="A spinoff of the Fate of the Furious, focusing on Johnson's US Displomatic Security Agent Luke Hobbs forming an unlikely alliance with Satham's Deckard Shaw." />
 </RelativeLayout>

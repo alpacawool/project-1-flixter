@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#EFCA08</color>
+    <color name="colorPrimaryDark">#9E425F</color>
+    <color name="colorAccent">#FEE440</color>
+    <color name="colorBackground">#000</color>
+    <color name="colorTitleText">#CEDED9</color>
+    <color name="colorDescText">#969395</color>
+    <color name="colorActionBar">#9E425F</color>
+    <color name="colorNavigationBar">#3A1823</color>
+    <color name="colorMovieBox">#333333</color>
 </resources>
