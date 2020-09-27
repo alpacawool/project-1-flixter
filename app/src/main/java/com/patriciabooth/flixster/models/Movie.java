@@ -16,6 +16,7 @@ public class Movie {
     String title;
     String overview;
     double rating; // Part 2
+    int movieId;
 
     // Part 2 Flixster: Empty Constructor needed by Parceler Library
     public Movie() {}
@@ -26,6 +27,7 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         rating = jsonObject.getDouble("vote_average");
+        movieId = jsonObject.getInt("id");
     }
 
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
@@ -55,5 +57,9 @@ public class Movie {
 
     public double getRating() {
         return rating;
+    }
+
+    public int getMovieId() {
+        return movieId;
     }
 }
