@@ -45,5 +45,17 @@
         android:transitionName="sharedTransition"
         tools:text="27 years after overcoming the malevolent supernational entity Pennywise, the former members of the Losers' Club, who have grown up and moved away from Derry, are brought back together by a devastating phone call." />
 
+    <TextView
+        android:id="@+id/tvRelease"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorDescText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="Released: 2020-01-05" />
+
 
 </LinearLayout>
