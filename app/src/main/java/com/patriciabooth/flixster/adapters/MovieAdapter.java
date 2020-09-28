@@ -73,6 +73,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        ImageView ivPlay;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -80,6 +81,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
             container = itemView.findViewById(R.id.container); // Part 2 Update
+            ivPlay = itemView.findViewById(R.id.ivPlay);
         }
 
         public void bind(final Movie movie) {
@@ -99,12 +101,31 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
             //.placeholder adds image of popcorn as placeholder
             // https://guides.codepath.org/android/Displaying-Images-with-the-Glide-Library#advanced-usage
+            /*
+            Glide
+                    .with(context)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.placeholder)
+                    .into(ivPoster);
+            */
+
             Glide
                     .with(context)
                     .load(imageUrl)
                     .placeholder(R.drawable.placeholder)
                     .into(ivPoster);
 
+            // Play icon for popular movies
+            // https://bumptech.github.io/glide/doc/targets.html
+            if (movie.getRating() >= 7.0) {
+                Glide
+                        .with(context)
+                        .load(R.drawable.playmovieic)
+                        .into(ivPlay);
+            }
+            else {
+                Glide.with(context).clear(ivPlay);
+            }
             // Flixster Part 2 Changes
 
             // 1. Register click listener on whole container
