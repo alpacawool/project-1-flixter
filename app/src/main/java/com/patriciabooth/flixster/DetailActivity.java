@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -80,8 +81,16 @@ public class DetailActivity extends YouTubeBaseActivity {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d("DetailActivity", "onInitializationSuccess");
+                // Trailer for popular movies are played automatically when movie is selected
+                // Movies with  more than 7 stars will have trailer played
+                // https://developers.google.com/youtube/android/player/reference/com/google/android/youtube/player/YouTubePlayer.html
+                if (ratingBar.getRating() >= 7.0 ) {
+                    youTubePlayer.loadVideo(youtubeKey);
+                }
+                else {
+                    youTubePlayer.cueVideo(youtubeKey);
+                }
 
-                youTubePlayer.cueVideo(youtubeKey);
             }
 
             @Override
