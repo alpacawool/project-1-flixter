@@ -1,5 +1,6 @@
 package com.patriciabooth.flixster.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -19,6 +20,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.patriciabooth.flixster.DetailActivity;
+import com.patriciabooth.flixster.MainActivity;
 import com.patriciabooth.flixster.R;
 import com.patriciabooth.flixster.models.Movie;
 
@@ -27,6 +29,7 @@ import org.parceler.Parcels;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
@@ -112,7 +115,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     Intent i = new Intent(context, DetailActivity.class);
                     i.putExtra("title", movie.getTitle());
                     i.putExtra("movie", Parcels.wrap(movie));
-                    context.startActivity(i);
+
+                    // Transition
+                    // https://guides.codepath.com/android/shared-element-activity-transition
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((Activity) context, (View)tvOverview, "sharedTransition");
+
+                    context.startActivity(i, options.toBundle());
                 }
             });
 

@@ -32,7 +32,10 @@
 
     <TextView
         android:id="@+id/tvOverview"
+        android:transitionName="sharedTransition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="27 years after overcoming the malevolent supernational entity Pennywise, the former members of the Losers' Club, who have grown up and moved away from Derry, are brought back together by a devastating phone call." />
+
+
 </LinearLayout>
