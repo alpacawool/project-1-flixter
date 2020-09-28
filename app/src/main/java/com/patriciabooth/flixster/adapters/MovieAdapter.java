@@ -113,6 +113,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .with(context)
                     .load(imageUrl)
                     .placeholder(R.drawable.placeholder)
+                    .fitCenter()
+                    .transform(new RoundedCorners(30))
                     .into(ivPoster);
 
             // Play icon for popular movies
