@@ -1,5 +1,6 @@
 package com.patriciabooth.flixster.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -19,6 +20,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.patriciabooth.flixster.DetailActivity;
+import com.patriciabooth.flixster.MainActivity;
 import com.patriciabooth.flixster.R;
 import com.patriciabooth.flixster.models.Movie;
 
@@ -27,6 +29,7 @@ import org.parceler.Parcels;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
@@ -70,6 +73,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        ImageView ivPlay;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +81,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
             container = itemView.findViewById(R.id.container); // Part 2 Update
+            ivPlay = itemView.findViewById(R.id.ivPlay);
         }
 
         public void bind(final Movie movie) {
@@ -96,12 +101,33 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
             //.placeholder adds image of popcorn as placeholder
             // https://guides.codepath.org/android/Displaying-Images-with-the-Glide-Library#advanced-usage
+            /*
             Glide
                     .with(context)
                     .load(imageUrl)
                     .placeholder(R.drawable.placeholder)
                     .into(ivPoster);
+            */
 
+            Glide
+                    .with(context)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.placeholder)
+                    .fitCenter()
+                    .transform(new RoundedCorners(30))
+                    .into(ivPoster);
+
+            // Play icon for popular movies
+            // https://bumptech.github.io/glide/doc/targets.html
+            if (movie.getRating() >= 7.0) {
+                Glide
+                        .with(context)
+                        .load(R.drawable.playmovieic)
+                        .into(ivPlay);
+            }
+            else {
+                Glide.with(context).clear(ivPlay);
+            }
             // Flixster Part 2 Changes
 
             // 1. Register click listener on whole container
@@ -112,7 +138,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     Intent i = new Intent(context, DetailActivity.class);
                     i.putExtra("title", movie.getTitle());
                     i.putExtra("movie", Parcels.wrap(movie));
-                    context.startActivity(i);
+
+                    // Transition
+                    // https://guides.codepath.com/android/shared-element-activity-transition
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((Activity) context, (View)tvOverview, "sharedTransition");
+
+                    context.startActivity(i, options.toBundle());
                 }
             });
 

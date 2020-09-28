@@ -12,6 +12,9 @@
 
         <!-- Navigation Bar-->
         <item name="android:navigationBarColor">@color/colorNavigationBar</item>
+
+        <!-- Enable Transitions-->
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
 

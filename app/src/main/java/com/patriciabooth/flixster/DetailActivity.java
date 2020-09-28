@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -28,6 +29,7 @@ public class DetailActivity extends YouTubeBaseActivity {
 
     TextView tvTitle;
     TextView tvOverview;
+    TextView tvRelease;
     RatingBar ratingBar;
     YouTubePlayerView youTubePlayerView;
 
@@ -38,13 +40,16 @@ public class DetailActivity extends YouTubeBaseActivity {
 
         tvTitle = findViewById(R.id.tvTitle);
         tvOverview = findViewById(R.id.tvOverview);
+        tvRelease = findViewById(R.id.tvRelease);
         ratingBar = findViewById(R.id.ratingBar);
         youTubePlayerView = findViewById(R.id.player);
+
 
         String title = getIntent().getStringExtra("title");
         Movie movie = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
+        tvRelease.setText(movie.getReleaseDate());
         ratingBar.setRating((float) movie.getRating());
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -80,8 +85,16 @@ public class DetailActivity extends YouTubeBaseActivity {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d("DetailActivity", "onInitializationSuccess");
+                // Trailer for popular movies are played automatically when movie is selected
+                // Movies with  more than 7 stars will have trailer played
+                // https://developers.google.com/youtube/android/player/reference/com/google/android/youtube/player/YouTubePlayer.html
+                if (ratingBar.getRating() >= 7.0 ) {
+                    youTubePlayer.loadVideo(youtubeKey);
+                }
+                else {
+                    youTubePlayer.cueVideo(youtubeKey);
+                }
 
-                youTubePlayer.cueVideo(youtubeKey);
             }
 
             @Override
